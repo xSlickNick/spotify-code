@@ -153,35 +153,17 @@ function UpdatePlayer(data) {
 		}
 	}
 
+	// Set Album Art URL
 	UpdateAlbumArt(document.getElementById("albumArt"), albumArt);
 
 	// Set spotifyCode URI
 	UpdateSpotifyCode(document.getElementById("spotifyCode"), spotifyCode)
-	
-	// Set progressbar
-	const progressPerc = ((progress / duration) * 100);			// Progress expressed as a percentage
-	const progressTime = ConvertSecondsToMinutesSoThatItLooksBetterOnTheOverlay(progress);
-	const timeRemaining = ConvertSecondsToMinutesSoThatItLooksBetterOnTheOverlay(duration - progress);
-	console.debug(`Progress: ${progressTime}`);
-	console.debug(`Time Remaining: ${timeRemaining}`);
-	document.getElementById("progressBar").style.width = `${progressPerc}%`;
-	document.getElementById("progressTime").innerHTML = progressTime;
-	document.getElementById("timeRemaining").innerHTML = `-${timeRemaining}`;
+
 
 	setTimeout(() => {
 		document.getElementById("albumArtBack").src = albumArt;
 		document.getElementById("backgroundImageBack").src = albumArt;
 	}, 1000);
-}
-
-function UpdateTextLabel(div, text) {
-	if (div.innerText != text) {
-		div.setAttribute("class", "text-fade");
-		setTimeout(() => {
-			div.innerText = text;
-			div.setAttribute("class", ".text-show");
-		}, 500);
-	}
 }
 
 function UpdateAlbumArt(div, imgsrc) {
@@ -209,13 +191,6 @@ function UpdateSpotifyCode(div, spotifyCode) {
 //////////////////////
 // HELPER FUNCTIONS //
 //////////////////////
-
-function ConvertSecondsToMinutesSoThatItLooksBetterOnTheOverlay(time) {
-	const minutes = Math.floor(time / 60);
-	const seconds = Math.trunc(time - minutes * 60);
-
-	return `${minutes}:${('0' + seconds).slice(-2)}`;
-}
 
 function SetVisibility(isVisible, updateCurrentState = true) {
 	widgetVisibility = isVisible;
