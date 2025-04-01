@@ -13,6 +13,8 @@ let access_token = "";
 const visibilityDuration = urlParams.get("duration") || 0;
 const hideAlbumArt = urlParams.has("hideAlbumArt");
 
+const scannablesURL = "https://scannables.scdn.co/uri/plain/jpeg/000000/white/640";
+
 let currentState = false;
 let currentSongUri = "";
 
@@ -105,6 +107,7 @@ async function GetCurrentlyPlaying(refreshInterval) {
 function UpdatePlayer(data) {
 	const isPlaying = data.is_playing;							// The play/pause state of the player
 	const songUri = data.item.uri;
+	const spotifyCode = `${scannablesURL}/${songUri}`;
 	const albumArt = data.item.album.images.length > 0 ?
 		`${data.item.album.images[0].url}`
 		: `images/placeholder-album-art.png`;					// The album art URL
@@ -153,7 +156,7 @@ function UpdatePlayer(data) {
 	UpdateAlbumArt(document.getElementById("albumArt"), albumArt);
 
 	// Set spotifyCode URI
-	UpdateSpotifyCode(document.getElementById("spotifyCode"), songUri)
+	UpdateSpotifyCode(document.getElementById("spotifyCode"), spotifyCode)
 	
 	// Set progressbar
 	const progressPerc = ((progress / duration) * 100);			// Progress expressed as a percentage
@@ -191,9 +194,7 @@ function UpdateAlbumArt(div, imgsrc) {
 	}
 }
 
-function UpdateSpotifyCode(div, uri) {
-	const scannablesURL = "https://scannables.scdn.co/uri/plain/jpeg/000000/white/640";
-	String spotifyCode = `${scannablesURL}/${uri}`;
+function UpdateSpotifyCode(div, spotifyCode) {
 	if (div.src != spotifyCode) {
 		div.setAttribute("class", "text-fade");
 		setTimeout(() => {
