@@ -108,10 +108,6 @@ function UpdatePlayer(data) {
 	const albumArt = data.item.album.images.length > 0 ?
 		`${data.item.album.images[0].url}`
 		: `images/placeholder-album-art.png`;					// The album art URL
-	const artist = `${data.item.artists[0].name}`;				// Name of the artist
-	const name = `${data.item.name}`;							// Name of the song
-	const duration = `${data.item.duration_ms/1000}`;			// The duration of the song in seconds
-	const progress = `${data.progress_ms/1000}`;				// The current position in seconds
 
 	// Set the visibility of the player, but only if the state is different than the last time we checked
 	if (isPlaying != currentState) {
@@ -154,13 +150,10 @@ function UpdatePlayer(data) {
 		}
 	}
 
-	// Set thumbnail
 	UpdateAlbumArt(document.getElementById("albumArt"), albumArt);
-	UpdateAlbumArt(document.getElementById("backgroundImage"), albumArt);
 
-	// Set song info
-	UpdateTextLabel(document.getElementById("artistLabel"), artist);
-	UpdateTextLabel(document.getElementById("songLabel"), name);
+	// Set spotifyCode URI
+	UpdateSpotifyCode(document.getElementById("spotifyCode"), songUri)
 	
 	// Set progressbar
 	const progressPerc = ((progress / duration) * 100);			// Progress expressed as a percentage
@@ -198,6 +191,18 @@ function UpdateAlbumArt(div, imgsrc) {
 	}
 }
 
+function UpdateSpotifyCode(div, uri) {
+	const scannablesURL = "https://scannables.scdn.co/uri/plain/jpeg/000000/white/640/";
+	const spotifyCode = `${scannablesURL}/${uri}`;
+	if (div.src != spotifyCode) {
+		div.setAttribute("class", "text-fade");
+		setTimeout(() => {
+			div.src = spotifyCode;
+			div.setAttribute("class", "text-show");
+		}, 500);
+	}
+}
+
 
 
 //////////////////////
@@ -228,12 +233,6 @@ function SetVisibility(isVisible, updateCurrentState = true) {
 	if (updateCurrentState)
 		currentState = isVisible;
 }
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////
-// RESIZER THING BECAUSE I THINK I KNOW HOW RESPONSIVE DESIGN WORKS EVEN THOUGH I DON'T //
-//////////////////////////////////////////////////////////////////////////////////////////
 
 
 
