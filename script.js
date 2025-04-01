@@ -193,7 +193,7 @@ function UpdateAlbumArt(div, imgsrc) {
 
 function UpdateSpotifyCode(div, uri) {
 	const scannablesURL = "https://scannables.scdn.co/uri/plain/jpeg/000000/white/640";
-	const spotifyCode = `${scannablesURL}/${uri}`;
+	String spotifyCode = `${scannablesURL}/${uri}`;
 	if (div.src != spotifyCode) {
 		div.setAttribute("class", "text-fade");
 		setTimeout(() => {
