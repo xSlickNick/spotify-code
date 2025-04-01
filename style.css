@@ -9,10 +9,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 1080px;
-    width: 1920px;
-    margin: 200px;
-    padding: 100px; /* Add padding to prevent content touching edges */
+    height: 100vh;
+    width: 100vw;
+    padding: 50px; /* Add padding to prevent content touching edges */
     box-sizing: border-box; /* Include padding in element's total width and height */
 }
 
@@ -35,12 +34,11 @@ body {
     filter: drop-shadow(15px 15px 7px rgba(0, 0, 0, 0.5));
     opacity: 1;
     transition: all 1s ease;
-    width: 1920px;
-    height: 1080px;
+    width: 75vw;
+    height: 75vh;
     margin: 0px; /* Center with auto margins */
     display: grid;
     align-items:center;
-
 }
 
 #albumArtBox {
