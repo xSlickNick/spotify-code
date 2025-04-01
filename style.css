@@ -64,7 +64,7 @@ body {
     border-radius: var(--corner-radius);
     width: 800px;
     height: 200px;
-    padding-left: 300px;
+    padding-left: 265px;
     filter: drop-shadow(15px 15px 7px rgba(0, 0, 0, 0.5));
 }
 
