@@ -130,7 +130,7 @@ function UpdatePlayer(data) {
 				if (visibilityDuration > 0) {
 					setTimeout(() => {
 						SetVisibility(false, false);
-					}, visibilityDuration * 1000);
+					}, visibilityDuration * 2000);
 				}
 			}, 500);
 		}
@@ -145,7 +145,7 @@ function UpdatePlayer(data) {
 				if (visibilityDuration > 0) {
 					setTimeout(() => {
 						SetVisibility(false, false);
-					}, visibilityDuration * 1000);
+					}, visibilityDuration * 2000);
 				}
 			}, 500);
 	
